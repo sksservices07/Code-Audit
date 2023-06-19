@@ -1,0 +1,3 @@
+# not included
+/node_modules
+.env
