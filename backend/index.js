@@ -27,9 +27,9 @@ app.post("/explain-code", async (req, res) => {
           role: "user",
           content: `
       Give me a detailed audit report along with the below details.
-      1. Give an overview of the contract.
-      2. Explain each function in the program.
-      3. Find the security vulnerabilities in the contract.
+      - Give an overview of the contract.
+      - Explain each function in the program.
+      - Few security vulnerabilities are Timestamp dependence, Default visibility, Block gas limit vulnerability, Simple logic error, Integer overflow and underflow, Front-running and Reentrancy attack. Check for all the possible vulnerabilities and only if found any suggest possible solutions for the same.
       ${prompt}
       `,
         },
