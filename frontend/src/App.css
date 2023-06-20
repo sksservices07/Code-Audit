@@ -10,11 +10,45 @@
 }
 
 .container-output {
-  display: flex;
+  display: block;
   align-items: center;
   justify-content: center;
+  text-align: center;
   font-size: 16px;
   font-family: "Courier New", Courier, monospace;
+}
+
+.container-lottie {
+  display: block;
+  align-items: center;
+  justify-content: center;
+  padding-top: 70px;
+}
+
+.container-text {
+  padding-top: 80px;
+  padding-bottom: none;
+}
+
+.container-lottie-analyze {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.container-lottie-download {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 8%;
+}
+
+.container-lottie-submit {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 18%;
 }
 
 .textarea-container {
@@ -31,7 +65,7 @@
   resize: none;
   border: none;
   outline: none;
-  font-size: 16px;
+  font-size: 24px;
   font-family: "Courier New", Courier, monospace;
 }
 
@@ -48,13 +82,15 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  cursor: pointer;
 }
 
 .submit-button {
   margin-top: 8px;
-  padding: 20px 30px;
+  padding: 30px 40px;
   border-radius: 4px;
-  font-size: 18px;
+  font-size: 26px;
+  cursor: pointer;
   font-family: "Courier New", Courier, monospace;
   border: none;
   background-color: #f8f8f8;

@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import "./App.css";
 import axios from "axios";
+import Lottie from "lottie-react";
+import submit from "./assets/submit.json";
+import docLoad from "./assets/docLoad.json";
+import analyze from "./assets/analyze.json";
+import download from "./assets/download.json";
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
@@ -10,6 +15,7 @@ function App() {
   const [outputText, setOutputText] = useState("");
   const [isLoading, setLoading] = useState(false);
   const [isGeneratePDF, setGeneratePDF] = useState(false);
+  const [isDownload, setDownload] = useState(false);
 
   const HTTP = "http://localhost:5000/explain-code";
 
@@ -37,10 +43,15 @@ function App() {
   };
 
   const handleGeneratePDF = async () => {
+    setDownload(true)
     const pdfGenerator = pdfMake.createPdf(docDefinition);
     console.log(pdfGenerator);
     pdfGenerator.download();
-    setGeneratePDF(false);
+    setInputText("");
+    await setInterval(() => {
+      setDownload(false)  
+      setGeneratePDF(false)
+    }, 3000);
   };
 
   const handleClick = async () => {
@@ -65,28 +76,52 @@ function App() {
 
   return (
     <>
-      {isLoading && (
+      {/* {isLoading && (
         <div className="container-output">
           <h2>Your audit report is getting generated...</h2>
         </div>
-      )}
+      )} */}
 
-      {isGeneratePDF && (
+      {/* {isGeneratePDF && (
         <div className="container-output">
           <h2>
             Please click the generate PDF button to download the audit report...
           </h2>
         </div>
-      )}
+      )} */}
+
       <div className="container">
-        <div className="textarea-container">
-          <textarea
-            className="input-textarea"
-            value={inputText}
-            onChange={handleChange}
-            placeholder="Enter text here..."
-          />
+        {isLoading && !isGeneratePDF && (
+          <div className="container-output">
+            <div>
+              <h2>Your audit report is generating...</h2>
+            </div>
+            <div className="container-lottie">
+              <Lottie animationData={docLoad} />
+            </div>
+          </div>
+        )}
+        {!isLoading && isGeneratePDF && (
+          <div className="container-output">
+          <div className="container-text">
+            <h2>Please click the button below to download the audit report...</h2>
+          </div>
+          <div className="container-lottie-analyze">
+            <Lottie animationData={analyze} />
+          </div>
         </div>
+        )}
+        
+        {!isLoading && !isGeneratePDF && (
+          <div className="textarea-container">
+            <textarea
+              className="input-textarea"
+              value={inputText}
+              onChange={handleChange}
+              placeholder="Enter your code here..."
+            />
+          </div>
+        )}
 
         {/* {!isLoading && 
         <div className="textarea-container">
@@ -101,15 +136,25 @@ function App() {
       </div>
 
       <div className="button-container">
-        {!isGeneratePDF && (
+        {!isGeneratePDF && !isLoading && !isDownload && (
           <button className="submit-button" onClick={handleClick}>
             Submit
           </button>
         )}
-        {isGeneratePDF && (
+        {!isGeneratePDF && isLoading && !isDownload && (
+          <div className="container-lottie-submit">
+          <Lottie animationData={submit} loop={false} />
+          </div>
+        )}
+        {isGeneratePDF && !isLoading && !isDownload && (
           <button className="submit-button" onClick={handleGeneratePDF}>
             Generate PDF
           </button>
+        )}
+        {isGeneratePDF && !isLoading && isDownload && (
+          <div className="container-lottie-download">
+            <Lottie animationData={download} loop={false} />
+          </div>
         )}
       </div>
     </>
