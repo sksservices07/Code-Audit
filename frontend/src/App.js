@@ -25,16 +25,9 @@ function App() {
   };
 
   const docDefinition = {
-    content: [
-      { text: `This is a Audit Report!`, style: "header" },
-      { text: `${outputText}`, style: "body" },
-    ],
+    content: [{ text: `${outputText}`, style: "body" }],
 
     styles: {
-      header: {
-        fontSize: 22,
-        bold: true,
-      },
       body: {
         fontSize: 18,
         bold: false,
@@ -43,14 +36,14 @@ function App() {
   };
 
   const handleGeneratePDF = async () => {
-    setDownload(true)
+    setDownload(true);
     const pdfGenerator = pdfMake.createPdf(docDefinition);
     console.log(pdfGenerator);
     pdfGenerator.download();
     setInputText("");
     await setInterval(() => {
-      setDownload(false)  
-      setGeneratePDF(false)
+      setDownload(false);
+      setGeneratePDF(false);
     }, 3000);
   };
 
@@ -76,20 +69,6 @@ function App() {
 
   return (
     <>
-      {/* {isLoading && (
-        <div className="container-output">
-          <h2>Your audit report is getting generated...</h2>
-        </div>
-      )} */}
-
-      {/* {isGeneratePDF && (
-        <div className="container-output">
-          <h2>
-            Please click the generate PDF button to download the audit report...
-          </h2>
-        </div>
-      )} */}
-
       <div className="container">
         {isLoading && !isGeneratePDF && (
           <div className="container-output">
@@ -103,15 +82,17 @@ function App() {
         )}
         {!isLoading && isGeneratePDF && (
           <div className="container-output">
-          <div className="container-text">
-            <h2>Please click the button below to download the audit report...</h2>
+            <div className="container-text">
+              <h2>
+                Please click the button below to download the audit report...
+              </h2>
+            </div>
+            <div className="container-lottie-analyze">
+              <Lottie animationData={analyze} />
+            </div>
           </div>
-          <div className="container-lottie-analyze">
-            <Lottie animationData={analyze} />
-          </div>
-        </div>
         )}
-        
+
         {!isLoading && !isGeneratePDF && (
           <div className="textarea-container">
             <textarea
@@ -122,17 +103,6 @@ function App() {
             />
           </div>
         )}
-
-        {/* {!isLoading && 
-        <div className="textarea-container">
-          <textarea
-            className="output-textarea"
-            value={outputText}
-            readOnly
-            placeholder="Output text will appear here..."
-          />
-        </div>
-        } */}
       </div>
 
       <div className="button-container">
@@ -143,7 +113,7 @@ function App() {
         )}
         {!isGeneratePDF && isLoading && !isDownload && (
           <div className="container-lottie-submit">
-          <Lottie animationData={submit} loop={false} />
+            <Lottie animationData={submit} loop={false} />
           </div>
         )}
         {isGeneratePDF && !isLoading && !isDownload && (
