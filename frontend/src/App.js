@@ -105,7 +105,7 @@ function App() {
         )}
       </div>
 
-      <div className="button-container">
+      <div className="button-container ">
         {!isGeneratePDF && !isLoading && !isDownload && (
           <button className="submit-button" onClick={handleClick}>
             Submit

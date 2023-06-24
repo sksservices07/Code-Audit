@@ -16,6 +16,7 @@
   text-align: center;
   font-size: 16px;
   font-family: "Courier New", Courier, monospace;
+  
 }
 
 .container-lottie {
@@ -67,14 +68,38 @@
   outline: none;
   font-size: 24px;
   font-family: "Courier New", Courier, monospace;
+  color: #000000;
+  border-radius: 10px;
 }
 
 .input-textarea {
-  background-color: #f8f8f8;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  /* padding: 10px;
+  border-radius: 10px; */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 4px 8px #f6cc8e;
+  animation: borderAnimation 5s infinite;
 }
 
+@keyframes borderAnimation {
+  0% {
+    border-color: #ffce84;
+  }
+  50% {
+    border-color: rgba(221, 178, 6, 0.4);
+  }
+  100% {
+    border-color: rgba(235, 242, 38, 0.2);
+  }
+}
+
+
 .output-textarea {
-  background-color: #eaeaea;
+  background-color: rgba(35, 47, 62, 0.8);
+  /* border: none;
+  padding: 10px;
+  border-radius: 10px; */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .button-container {
@@ -83,16 +108,26 @@
   justify-content: center;
   flex-direction: column;
   cursor: pointer;
+  
 }
 
 .submit-button {
   margin-top: 8px;
   padding: 30px 40px;
-  border-radius: 4px;
+  border-radius: 7px;
   font-size: 26px;
   cursor: pointer;
   font-family: "Courier New", Courier, monospace;
   border: none;
-  background-color: #f8f8f8;
+  background-color: #ffa825;
   flex-direction: column;
+  transition: color 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.submit-button:hover {
+  background-color: #ff9900;
+  color: white;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  transform: scale(1.05);
 }
